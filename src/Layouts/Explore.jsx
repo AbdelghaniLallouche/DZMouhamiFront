@@ -1,11 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { CoolPic } from "../Components/Svgs";
+import { CoolPic } from "../Svgs/Svgs";
 import { useState } from "react";
 import LawyerCard from "../Components/LawyerCard";
+import { SearchIcon } from "../Svgs/Svgs";
+import Select from "../Components/Select";
 
 const Explore = () => {
+    const [wilaya , setWilaya] = useState()
+    const [wilayaselected , setWilayaselected] = useState(false)
     const {t , i18n} = useTranslation()
-    const {data , setData} = useState([
+    const [data , setData] = useState([
         {
             id : 1,
             name : "lallouche",
@@ -27,50 +31,59 @@ const Explore = () => {
             img : "kalwa",
         }
     ])
-    const SearchIcon = ()=>(
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#27272A" class={i18n.language == "ar" ? "absolute top-2 right-2 w-6 h-6" : "absolute top-2 left-2 w-6 h-6"}>
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-        </svg>
-        )
+    
 
     return ( 
     <div className="h-full bg-primary">
         <p className="text-white font-bold uppercase text-lg text-center my-10">{t("explore")}</p>
         <div className="relative my-3 mx-16">
             <input type="text" name="search" className="rounded-xl shadow-lg w-full py-2 px-10 border-none" required placeholder={t("find")}/>
-            <SearchIcon />
+            <SearchIcon txt = {i18n.language}/>
         </div>
         <div className="mx-16 grid grid-cols-2 justify-items-center gap-1 md:grid-cols-5">
             <select  className="select" name="category">
                 <option value="" disabled selected hidden>
                 {t("cate")}
-                </option>
+                </option>    
+                <option value={1}>{t("bank")}</option>
+                <option value={2}>{t("tax")}</option>
+                <option value={3}>{t("gpractice")}</option>
             </select>
             <select className="select" name="lang">
                  <option value="" disabled selected hidden>
                     {t("lang")}
                   </option>
+                  <option value={1}>{t("ar")}</option>
+                  <option value={2}>{t("eng")}</option>
+                  <option value={3}>{t("fr")}</option>
             </select>
-            <select className="select" name="wilaya">
-                    <option value="" disabled selected hidden>
-                    {t("wilaya")}
-                    </option>
-            </select>
+           <Select props={{
+            wilaya ,
+            setWilaya ,
+            setWilayaselected
+           }}/>
             <select className="select" name="years">
                     <option value="" disabled selected hidden>
                     {t("years")}
                     </option>
+                    {[...Array(50)].map((x , i)=>(
+                        <option value={i}>{`${i} ${t("expyear")}`}</option>
+                    ))}
             </select>
             <select className="select" name="rating">
                     <option value="" disabled selected hidden>
                     {t("rating")}
                     </option>
+                    {[...Array(6)].map((x , i)=>(
+                        <option value={i}>{`${i} ${t("stars")}`}</option>
+                    
+                    ))}
             </select>
         </div>
         <div className="w-full flex justify-center items-center">
            {data?.length > 0 ?
-            <div>
-               <h1>{t("searchresult")}</h1>
+            <div className="w-[90%] mx-auto">
+               <h1 className="text-white text-xl font-bold my-3">{t("searchresult")}</h1>
                {data?.map((lawyer)=>(
                 <LawyerCard key={lawyer.id} props= {{
                     id : lawyer.id,

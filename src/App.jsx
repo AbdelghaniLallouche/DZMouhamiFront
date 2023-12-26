@@ -17,6 +17,8 @@ function App() {
       document.body.dir = 'rtl'
     }
   } , [i18n.language])
+
+  
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path="/" >

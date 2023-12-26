@@ -5,6 +5,7 @@ import Sectiontwo from "../Sections/Section2";
 import Sectionthree from "../Sections/Section3";
 import Sectionfour from "../Sections/Section4";
 import { Link } from "react-router-dom";
+import { ArrowwIcon } from "../Svgs/Svgs";
 
 const ProfileSetup = () => {
     const [acceptterms , setAcceptterms] = useState(false)
@@ -19,19 +20,12 @@ const ProfileSetup = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const fileInputRef = useRef(null);
     const [year , setYear] = useState()
-
-    const ArrowIcon = ({lang})=>(
-        <svg width="20" className={lang == 'ar' ? "rotate-180 inline ml-1 mr-7" : "inline mr-1 ml-7"} height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 12L14 5V9H3V15H14V19L21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    )
-
  
     return ( 
         <div className="w-screen bg-primary overflow-x-hidden">
             <header>
                 <h1 className="text-white text-2xl font-bold mx-6 pt-4">{t("setprofile")}</h1>
-                <ArrowIcon lang={i18n.language}/>
+                <ArrowwIcon lang={i18n.language}/>
                 <p className="txt inline mx-[3px] font-semibold">{t("soussetprofile")}</p>
             </header>
             

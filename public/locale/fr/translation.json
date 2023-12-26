@@ -71,6 +71,8 @@
     "lang" : "Langue",
     "years" : "années d'expérience",
     "rating" : "évaluation",
-    "searchresult" : "Résultat de la recherche :" 
+    "searchresult" : "Résultat de la recherche :" ,
+    "expyear" : "années d'expérience",
+    "stars" : "étoilles"
 
 }

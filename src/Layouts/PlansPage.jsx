@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import SelectYear from "../Components/SelectYear";
 import { useState } from "react";
+import { ArrowIcon } from "../Svgs/Svgs";
 const PlansPage = () => {
     const {t , i18n} = useTranslation()
     const plans = [t("plan1") ,t("plan2") , t("plan3")]
@@ -8,11 +9,6 @@ const PlansPage = () => {
     const [year , setYear] = useState()
     const months = [1,2,3,4,5,6,7,8,9,10,11,12]
 
-    const ArrowIcon = ({lang})=>(
-        <svg width="20" className={lang == 'ar' ? "rotate-180 inline mx-1" : "inline mx-1"} height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 12L14 5V9H3V15H14V19L21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    )
     return ( 
         <div className="bg-primary md:h-screen text-center sm:text-start flex flex-col items-center sm:flex sm:justify-around sm:items-center sm:flex-row">
             <div className="m-5 text-white">
