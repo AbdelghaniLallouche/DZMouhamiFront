@@ -6,6 +6,11 @@ import { useTranslation } from "react-i18next";
 import ProfileSetup from "./Layouts/ProfileSetup";
 import HomePage from "./Layouts/HomePage";
 import Explore from "./Layouts/Explore";
+import LawyerProfile from "./Layouts/LawyerProfile";
+import Generale from "./Components/Generale";
+import Details from "./Components/Details";
+import Schedule from "./Components/Schedule";
+import Rating from "./Components/Rating";
 
 
 function App() {
@@ -22,8 +27,18 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path="/" >
+         <Route path="login" element = {<WelcomePage />}/>
+         <Route path="billing" element = {<PlansPage />} />
+         <Route path="setprofile" element = {<ProfileSetup />}/>
          <Route element= {<HomePage />} path="/" >
             <Route index element= {<Explore />} />
+            <Route path="editprofile" element = {<ProfileSetup /> /* just placeholder element */ }/>
+            <Route path="lawyer/:id" element = {<LawyerProfile />} > 
+                <Route index element = {<Generale />} />
+                <Route path="details" element = {<Details />} />
+                <Route path="schedule" element = {<Schedule />} />
+                <Route path="rating" element = {<Rating />} />
+            </Route>
          </Route>
       </Route>
     )

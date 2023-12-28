@@ -4,7 +4,7 @@ import Sectionone from "../Sections/Section1";
 import Sectiontwo from "../Sections/Section2";
 import Sectionthree from "../Sections/Section3";
 import Sectionfour from "../Sections/Section4";
-import { Link } from "react-router-dom";
+import Footer from "../Components/Footer";
 import { ArrowwIcon } from "../Svgs/Svgs";
 
 const ProfileSetup = () => {
@@ -47,23 +47,7 @@ const ProfileSetup = () => {
                 <button className="buttonwhite font-semibold disabled:text-gray-500 bg-slate-400" disabled = {!acceptterms} >{t("submit")}</button>
             </section>
 
-            <footer className={i18n.language == "ar" ? "bg-[#1D1D21] p-10 text-center sm:text-start": "bg-[#1D1D21] p-10 text-center sm:text-end"}>
-              <ul className="flex items-center gap-3 mb-3 mt-1">
-                <li className="list-none">
-                <Link className="text-white text-sm underline">{t("privacy")}</Link>
-                </li>
-                <li className="list-none">
-                <Link className="text-white underline text-sm">{t("uset")}</Link>
-                </li>
-                <li className="list-none">
-                <Link className="text-white text-sm underline">{t("community")}</Link>
-                </li>
-                <li className="list-none">
-                <Link className="text-white text-sm underline">{t("sitemap")}</Link>
-                </li>
-              </ul>
-              <p className="txt text-end">{t("rights")}</p>
-            </footer>
+            <Footer />
 
 
         </div>

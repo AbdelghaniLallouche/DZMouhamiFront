@@ -4,6 +4,7 @@ import { useState } from "react";
 import LawyerCard from "../Components/LawyerCard";
 import { SearchIcon } from "../Svgs/Svgs";
 import Select from "../Components/Select";
+import { Link } from "react-router-dom";
 
 const Explore = () => {
     const [wilaya , setWilaya] = useState()
@@ -36,11 +37,11 @@ const Explore = () => {
     return ( 
     <div className="h-full bg-primary">
         <p className="text-white font-bold uppercase text-lg text-center my-10">{t("explore")}</p>
-        <div className="relative my-3 mx-16">
+        <div className="relative my-3 mx-[5%]">
             <input type="text" name="search" className="rounded-xl shadow-lg w-full py-2 px-10 border-none" required placeholder={t("find")}/>
             <SearchIcon txt = {i18n.language}/>
         </div>
-        <div className="mx-16 grid grid-cols-2 justify-items-center gap-1 md:grid-cols-5">
+        <div className="mx-[5%] grid grid-cols-2 justify-items-center gap-1 md:grid-cols-5">
             <select  className="select" name="category">
                 <option value="" disabled selected hidden>
                 {t("cate")}
@@ -67,7 +68,7 @@ const Explore = () => {
                     {t("years")}
                     </option>
                     {[...Array(50)].map((x , i)=>(
-                        <option value={i}>{`${i} ${t("expyear")}`}</option>
+                        <option key={i} value={i}>{`${i} ${t("expyear")}`}</option>
                     ))}
             </select>
             <select className="select" name="rating">
@@ -75,7 +76,7 @@ const Explore = () => {
                     {t("rating")}
                     </option>
                     {[...Array(6)].map((x , i)=>(
-                        <option value={i}>{`${i} ${t("stars")}`}</option>
+                        <option key={i} value={i}>{`${i} ${t("stars")}`}</option>
                     
                     ))}
             </select>
@@ -85,7 +86,7 @@ const Explore = () => {
             <div className="w-[90%] mx-auto">
                <h1 className="text-white text-xl font-bold my-3">{t("searchresult")}</h1>
                {data?.map((lawyer)=>(
-                <LawyerCard key={lawyer.id} props= {{
+                <Link className="no-underline" to={`/lawyer/${lawyer.id}`}><LawyerCard key={lawyer.id} props= {{
                     id : lawyer.id,
                     name : lawyer.name,
                     address : lawyer.address,
@@ -95,6 +96,7 @@ const Explore = () => {
                     langs : lawyer.langs,
                     img : lawyer.img,
                 }}/>
+                </Link>
                ))}
            </div>  :
             <CoolPic />}

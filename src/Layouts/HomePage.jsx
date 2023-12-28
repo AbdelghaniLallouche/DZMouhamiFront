@@ -1,6 +1,7 @@
 import { useState , useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, Outlet } from "react-router-dom";
+import Footer from "../Components/Footer"
 import { LogoutIcon, MenuIcon, SearchhIcon, UserIcon , CloseIcon } from "../Svgs/Svgs";
 
 const HomePage = () => {
@@ -62,6 +63,7 @@ const HomePage = () => {
                 <button className="inline-block lg:hidden" onClick={toggleNavVisibility}><MenuIcon /></button>      
             </header>
             <Outlet />
+           <Footer />
         </div>
      );
 }

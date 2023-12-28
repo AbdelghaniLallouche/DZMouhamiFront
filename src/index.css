@@ -52,3 +52,9 @@ body{
 .card{
   @apply py-2 px-4 border-primary border-solid border-[1.5px] rounded-md shadow-md text-start
 }
+.link{
+  @apply px-4 py-1 no-underline text-primary text-lg font-semibold capitalize
+}
+a.active{
+  @apply bg-white text-black
+}

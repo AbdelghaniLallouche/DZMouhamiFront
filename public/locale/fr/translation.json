@@ -73,6 +73,9 @@
     "rating" : "évaluation",
     "searchresult" : "Résultat de la recherche :" ,
     "expyear" : "années d'expérience",
-    "stars" : "étoilles"
+    "stars" : "étoilles",
+    "generale" : "générale",
+    "details" : "détails",
+    "schedule" : "programme"
 
 }
