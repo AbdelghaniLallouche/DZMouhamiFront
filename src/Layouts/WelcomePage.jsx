@@ -1,8 +1,33 @@
 import { useTranslation } from "react-i18next";
 import { GoogleIcon } from "../Svgs/Svgs";
+import { useEffect } from "react";
+import {gapi} from 'gapi-script'
 
 const WelcomePage = () => {
   const {t , i18n} = useTranslation()
+
+  useEffect(() => {
+    gapi.load('auth2', () => {
+      gapi.auth2.init({
+        client_id: '43154866104-8ot0vev112f5rsjeae3fdudcq8agpaio.apps.googleusercontent.com',
+      });
+    });
+  }, []);
+
+  const handleGoogleLogin = () => {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signIn().then((googleUser) => {
+
+      const profile = googleUser.getBasicProfile(); 
+      console.log('ID: ' + profile.getId());
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+      const idToken = googleUser.getAuthResponse().id_token;
+      console.log('ID Token: ' + idToken);
+  
+    });
+  };
 
     return ( 
       
@@ -24,11 +49,11 @@ const WelcomePage = () => {
                 <option value="fr">francais</option>
             </select>
             <div className="sm:w-[300px] w-[250px] text-center">
-                <button className="bg-primary py-2 mb-2 w-full text-white rounded text-center">
+                <button onClick={handleGoogleLogin} className="bg-primary py-2 mb-2 w-full text-white rounded text-center">
                   <span>{t("glogin")}</span>
                   <GoogleIcon color={'white'}/>
                 </button>
-                <button className="bg-white border-2 rounded border-primary w-full py-1 ">
+                <button onClick={handleGoogleLogin} className="bg-white border-2 rounded border-primary w-full py-1 ">
                   <span>{t("gloginlaw")}</span>
                   <GoogleIcon color={'#27272A'}/>
                </button>
