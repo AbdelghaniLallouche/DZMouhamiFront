@@ -1,6 +1,11 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromChildren } from "react-router-dom"
-import WelcomePage from "./Layouts/WelcomePage"
-import PlansPage from "./Layouts/PlansPage"
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromChildren,
+} from "react-router-dom";
+import WelcomePage from "./Layouts/WelcomePage";
+import PlansPage from "./Layouts/PlansPage";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ProfileSetup from "./Layouts/ProfileSetup";
@@ -12,40 +17,39 @@ import Details from "./Components/Details";
 import Schedule from "./Components/Schedule";
 import Rating from "./Components/Rating";
 
-
 function App() {
-  const {i18n} = useTranslation()
-  useEffect(()=>{
-    if(i18n.language == 'fr'){
-      document.body.dir = 'ltr'
-    }else{
-      document.body.dir = 'rtl'
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    if (i18n.language == "fr") {
+      document.body.dir = "ltr";
+    } else {
+      document.body.dir = "rtl";
     }
-  } , [i18n.language])
+  }, [i18n.language]);
 
-  
   const router = createBrowserRouter(
     createRoutesFromChildren(
-      <Route path="/" >
-         <Route path="login" element = {<WelcomePage />}/>
-         <Route path="billing" element = {<PlansPage />} />
-         <Route path="setprofile" element = {<ProfileSetup />}/>
-         <Route element= {<HomePage />} path="/" >
-            <Route index element= {<Explore />} />
-            <Route path="editprofile" element = {<ProfileSetup /> /* just placeholder element */ }/>
-            <Route path="lawyer/:id" element = {<LawyerProfile />} > 
-                <Route index element = {<Generale />} />
-                <Route path="details" element = {<Details />} />
-                <Route path="schedule" element = {<Schedule />} />
-                <Route path="rating" element = {<Rating />} />
-            </Route>
-         </Route>
+      <Route path="/">
+        <Route path="login" element={<WelcomePage />} />
+        <Route path="billing" element={<PlansPage />} />
+        <Route path="setprofile" element={<ProfileSetup />} />
+        <Route element={<HomePage />} path="/">
+          <Route index element={<Explore />} />
+          <Route
+            path="editprofile"
+            element={<ProfileSetup /> /* just placeholder element */}
+          />
+          <Route path="lawyer/:id" element={<LawyerProfile />}>
+            <Route index element={<Generale />} />
+            <Route path="details" element={<Details />} />
+            <Route path="schedule" element={<Schedule />} />
+            <Route path="rating" element={<Rating />} />
+          </Route>
+        </Route>
       </Route>
     )
-  )
-  return (
-    <RouterProvider router={router} />
-  )
+  );
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
