@@ -16,6 +16,7 @@ import Generale from "./Components/Generale";
 import Details from "./Components/Details";
 import Schedule from "./Components/Schedule";
 import Rating from "./Components/Rating";
+import UserContextProvider from "./Context/UserContextProvider";
 
 function App() {
   const { i18n } = useTranslation();
@@ -49,7 +50,11 @@ function App() {
       </Route>
     )
   );
-  return <RouterProvider router={router} />;
+  return (
+    <UserContextProvider>
+      <RouterProvider router={router} />
+    </UserContextProvider>)
+    
 }
 
 export default App;

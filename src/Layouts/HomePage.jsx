@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "../Components/Footer";
+import { userContext } from "../Context/UserContextProvider";
 import {
   LogoutIcon,
   MenuIcon,
@@ -11,6 +12,7 @@ import {
 } from "../Svgs/Svgs";
 
 const HomePage = () => {
+  const {user} = useContext(userContext);
   const { t, i18n } = useTranslation();
   const [isNavHidden, setIsNavHidden] = useState(true);
 
@@ -49,18 +51,18 @@ const HomePage = () => {
               <CloseIcon />
             </button>
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-end lg:gap-5">
-              <Link className="text-center">
+              <Link to ="/" className="text-center">
                 <SearchhIcon />
                 <h2 className="text-white font-semibold lg:text-[17px] px-2 inline">
                   {t("find")}
                 </h2>
               </Link>
-              <Link className="text-center">
+              {user.role == 1 && <Link to="/editprofile" className="text-center">
                 <UserIcon />
                 <h2 className="text-white font-semibold lg:text-[17px] px-2 inline">
                   {t("edit")}
                 </h2>
-              </Link>
+              </Link>}
             </div>
             <div className="flex flex-col lg:flex-row px-[6px] gap-5 lg:gap-2 lg:px-0">
               <select

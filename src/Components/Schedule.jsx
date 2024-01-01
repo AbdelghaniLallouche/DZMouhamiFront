@@ -1,7 +1,10 @@
 import { t } from "i18next";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { userContext } from "../Context/UserContextProvider";
 
 const Schedule = () => {
+  const { user } = useContext(userContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState([
     { id: 1, lawyer: 1, day: "sunday", from: "8:00", to: "15:00" },
     { id: 2, lawyer: 1, day: "monday", from: "8:00", to: "17:00" },
@@ -26,6 +29,19 @@ const Schedule = () => {
           </div>
         ))}
       </div>
+      {user.role == 2 && (
+        <div className="flex justify-end">
+          <button
+            className="button font-semibold hover:bg-green-700 transition duration-[0.5s] ease-in-out"
+            onClick={() => {
+              setIsModalOpen(true);
+              
+            }}
+          >
+            {t("reserver")}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
