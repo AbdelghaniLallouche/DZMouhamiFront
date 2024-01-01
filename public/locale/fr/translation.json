@@ -89,7 +89,9 @@
     "date" : "date :",
     "time" : "heure :",
     "additionalinfo" : "infos supplémentaires :",
-    "annuler" : "annuler"
+    "annuler" : "annuler",
+    "reservations" : "réservations",
+    "rendez-vous" : "rendez-vous"
     
 
 

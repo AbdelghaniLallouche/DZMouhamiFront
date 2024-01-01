@@ -9,10 +9,41 @@ import {
   SearchhIcon,
   UserIcon,
   CloseIcon,
+  ReservationIcon
 } from "../Svgs/Svgs";
 
 const HomePage = () => {
-  const {user} = useContext(userContext);
+  const { user } = useContext(userContext);
+  const [notifications, setNotifications] = useState([{
+    id : 2 ,
+    user : 2,
+    lawyer : 1,
+    response : "accepted",
+    date : "2022-22-22",
+    from : "11:00",
+    to : "12:00",
+    description : "description"
+  }])
+  const [reservations, setReservations] = useState([
+    {
+      id: 1,
+      user: 1,
+      lawyer: 1,
+      date: "2022:11:11",
+      from: "11:00",
+      to: "12:00",
+      description: "description",
+    },
+    {
+      id: 1,
+      user: 1,
+      lawyer: 1,
+      date: "2022:11:11",
+      from: "11:00",
+      to: "12:00",
+      description: "description",
+    },
+  ]);
   const { t, i18n } = useTranslation();
   const [isNavHidden, setIsNavHidden] = useState(true);
 
@@ -51,18 +82,30 @@ const HomePage = () => {
               <CloseIcon />
             </button>
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-end lg:gap-5">
-              <Link to ="/" className="text-center">
+              <Link to="/" className="text-center">
                 <SearchhIcon />
                 <h2 className="text-white font-semibold lg:text-[17px] px-2 inline">
                   {t("find")}
                 </h2>
               </Link>
-              {user.role == 1 && <Link to="/editprofile" className="text-center">
-                <UserIcon />
-                <h2 className="text-white font-semibold lg:text-[17px] px-2 inline">
-                  {t("edit")}
-                </h2>
-              </Link>}
+              {user.role == 1 && (
+                <Link to="/editprofile" className="text-center">
+                  <UserIcon />
+                  <h2 className="text-white font-semibold lg:text-[17px] px-2 inline">
+                    {t("edit")}
+                  </h2>
+                </Link>
+              )}
+              {user.role == 1 && (
+                <Link to="/reservations" className="text-center flex items-center justify-start">          
+                 <h2 className="text-white font-semibold lg:text-[17px] px-2 capitalize">
+                    {t("reservations")}
+                  </h2>
+                  <p className="bg-red-600 pl-[3px] pr-1  mt-[5.5px] pt-[1px] pb-[2px] rounded-[50%] text-white text-center text-xs font-semibold">
+                    {reservations ? reservations.length : 0}
+                  </p>
+                </Link>
+              )}
             </div>
             <div className="flex flex-col lg:flex-row px-[6px] gap-5 lg:gap-2 lg:px-0">
               <select
@@ -87,12 +130,21 @@ const HomePage = () => {
             </div>
           </nav>
         )}
+        <div className="flex flex-1 justify-end gap-3 lg:flex-none">
+        {user.role == 2 && 
+        <button className="h-6 w-6 lg:h-8 lg:w-8 relative flex justify-end">
+          <ReservationIcon />
+          {notifications && <p className="absolute bottom-[-14px] lg:bottom-[-10px] right-[-2px] bg-red-600 py-[3px] lg:px-2 px-[6px] rounded-[50%] text-white text-center text-xs font-semibold">{notifications.length }</p>}
+        </button>
+        }
         <button
           className="inline-block lg:hidden"
           onClick={toggleNavVisibility}
         >
           <MenuIcon />
         </button>
+        </div>
+        
       </header>
       <Outlet />
       <Footer />

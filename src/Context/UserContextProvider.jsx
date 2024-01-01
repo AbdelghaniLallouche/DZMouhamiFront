@@ -12,7 +12,7 @@ const UserContextProvider = (props) => {
             return null; //placeholder
         }
     }
-    const [user , dispatch] = useReducer(reducer, {id:1,username:"",email:"",password:"",role:2} /*placeholder for getUser() */ )
+    const [user , dispatch] = useReducer(reducer, {id:1,username:"",email:"",password:"",role:1} /*placeholder for getUser() */ )
     
     return ( 
         <userContext.Provider value={{user , dispatch}}>

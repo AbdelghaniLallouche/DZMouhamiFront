@@ -20,7 +20,7 @@ const Generale = () => {
     univ: "dhfdf",
   });
   return (
-    <div className="bg-white rounded p-6 my-4 ">
+    <div className="bg-white rounded p-6 my-4">
       <div className="sm:flex sm:justify-start sm:items-start sm:gap-6">
         <div className="pb-4 my-4 w-full border-b-[1px] border-black sm:border-none sm:w-fit sm:py-0">
           <div className="h-40 w-36 bg-gray-500 rounded-xl mx-auto sm:mx-0"></div>

@@ -89,6 +89,8 @@
     "date" : "التاريخ :",
     "time" : "الوقت :",
     "additionalinfo" : "معلومات إضافية :",
-    "annuler" : "الغاء"        
+    "annuler" : "الغاء",
+    "reservations" : "المواعيد",
+    "rendez-vous" : "جدول المواعيد"        
     
 }

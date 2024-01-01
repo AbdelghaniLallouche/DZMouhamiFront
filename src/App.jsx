@@ -16,7 +16,10 @@ import Generale from "./Components/Generale";
 import Details from "./Components/Details";
 import Schedule from "./Components/Schedule";
 import Rating from "./Components/Rating";
+import ReservationsList from "./Components/Reservationslist";
 import UserContextProvider from "./Context/UserContextProvider";
+import Reservations from "./Layouts/Resarvations";
+import DatesTable from "./Components/DatesTable";
 
 function App() {
   const { i18n } = useTranslation();
@@ -36,6 +39,10 @@ function App() {
         <Route path="setprofile" element={<ProfileSetup />} />
         <Route element={<HomePage />} path="/">
           <Route index element={<Explore />} />
+          <Route path="reservations" element = {<Reservations />} >
+            <Route index element = {<ReservationsList />} />
+            <Route path="dates" element = {<DatesTable />} />
+          </Route>
           <Route
             path="editprofile"
             element={<ProfileSetup /> /* just placeholder element */}
