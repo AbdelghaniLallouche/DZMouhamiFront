@@ -84,7 +84,12 @@
     "noreview" : "il y a pas des évaluations",
     "addreview" : "ajouter une évaluation",
     "search" : "recherche",
-    "reserver" : "réserver !"
+    "reserver" : "réserver !",
+    "prendre" : "prendre un rendez-vous :",
+    "date" : "date :",
+    "time" : "heure :",
+    "additionalinfo" : "infos supplémentaires :",
+    "annuler" : "annuler"
     
 
 

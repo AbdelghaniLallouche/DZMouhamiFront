@@ -57,6 +57,15 @@ body {
 a.active {
   @apply bg-white text-black;
 }
+.hhh{
+  @apply text-white text-lg font-semibold;
+}
 .hh {
   @apply text-primary text-lg font-semibold;
+}
+.overlay{
+  @apply bg-black bg-opacity-50 fixed inset-0 z-50;
+}
+.focuss{
+  @apply focus:outline-none;
 }

@@ -1,8 +1,11 @@
 import { t } from "i18next";
 import { useContext, useState } from "react";
 import { userContext } from "../Context/UserContextProvider";
+import Modal from "./Modal";
+import { useParams } from "react-router-dom";
 
 const Schedule = () => {
+  const {id} = useParams();
   const { user } = useContext(userContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState([
@@ -42,6 +45,7 @@ const Schedule = () => {
           </button>
         </div>
       )}
+      {isModalOpen && <Modal props = {{close : setIsModalOpen , idlawyer : id}}/>}
     </div>
   );
 };

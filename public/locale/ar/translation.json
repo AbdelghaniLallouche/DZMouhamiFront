@@ -84,7 +84,11 @@
     "noreview" : "لا يوجد تقييمات ",
     "addreview" : "اضف التقييم",
     "search" : "بحث",
-    "reserver" : "احجز موعد"
-        
+    "reserver" : "احجز موعد",
+    "prendre" : "احجز موعد :",
+    "date" : "التاريخ :",
+    "time" : "الوقت :",
+    "additionalinfo" : "معلومات إضافية :",
+    "annuler" : "الغاء"        
     
 }
