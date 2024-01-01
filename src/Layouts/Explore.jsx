@@ -9,29 +9,70 @@ import { Link } from "react-router-dom";
 const Explore = () => {
   const [wilaya, setWilaya] = useState();
   const [wilayaselected, setWilayaselected] = useState(false);
+  const [category, setCategory] = useState();
+  const [lang, setLang] = useState();
+  const [years, setYears] = useState();
+  const [rating, setRating] = useState();
+  const [name, setName] = useState();
   const { t, i18n } = useTranslation();
+  const [issearch , setIssearch] = useState(false);
+  const [filtreddata, setFiltreddata] = useState([]);
   const [data, setData] = useState([
     {
       id: 1,
       name: "lallouche",
+      wilaya : "Alger",
+      commune : "Alger centre",
       address: "zighoud youcef",
-      rating: 21,
-      categ: "TAX",
-      exp: "12 years",
-      langs: "arabic",
+      rating: 5,
+      categ: 2,
+      exp: 12,
+      langs: 1,
       img: "kalwa",
     },
     {
       id: 2,
       name: "lallouche",
+      wilaya : "Constantine",
+      commune : "Zighoud youcef",
       address: "zighoud youcef",
-      rating: 21,
-      categ: "TAX",
-      exp: "12 years",
-      langs: "arabic",
+      rating: 5,
+      categ: 2,
+      exp: 12,
+      langs: 1,
       img: "kalwa",
     },
   ]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setIssearch(true);
+   console.log(`${wilaya} ${category} ${lang} ${years} ${rating} ${name}`)
+   let filtered = data.filter((lawyer) => {
+    if (
+      lawyer.name.toLowerCase().includes(name.toLowerCase())
+    ) {
+      return true;
+    }
+    return false;
+  });
+  if (category) {
+    filtered = filtered.filter((lawyer) => lawyer.categ == category);
+  }
+  if (lang) {
+    filtered = filtered.filter((lawyer) => lawyer.langs == lang);
+  }
+  if (years) {
+    filtered = filtered.filter((lawyer) => lawyer.exp == years);
+  }
+  if (rating) {
+    filtered = filtered.filter((lawyer) => lawyer.rating == rating);
+  }
+  if (wilaya) {
+    filtered = filtered.filter((lawyer) => lawyer.address == wilaya);
+  }
+  setFiltreddata(filtered);
+  }
 
   return (
     <div className="h-full bg-primary">
@@ -41,6 +82,10 @@ const Explore = () => {
       <div className="relative my-3 mx-[5%]">
         <input
           type="text"
+          onChange={(e)=>{
+            setName(e.target.value)
+          }}
+          value={name}
           name="search"
           className="rounded-xl shadow-lg w-full py-2 px-10 border-none"
           required
@@ -48,8 +93,10 @@ const Explore = () => {
         />
         <SearchIcon txt={i18n.language} />
       </div>
-      <div className="mx-[5%] grid grid-cols-2 justify-items-center gap-1 md:grid-cols-5">
-        <select className="select" name="category">
+      <div className="mx-[5%] grid grid-cols-2 justify-items-center gap-1 md:grid-cols-6">
+        <select onChange={(e)=>{
+          setCategory(e.target.value)
+        }} className="select" name="category">
           <option value="" disabled selected hidden>
             {t("cate")}
           </option>
@@ -57,7 +104,9 @@ const Explore = () => {
           <option value={2}>{t("tax")}</option>
           <option value={3}>{t("gpractice")}</option>
         </select>
-        <select className="select" name="lang">
+        <select onChange={(e)=>{
+          setLang(e.target.value)
+        }} className="select" name="lang">
           <option value="" disabled selected hidden>
             {t("lang")}
           </option>
@@ -72,7 +121,9 @@ const Explore = () => {
             setWilayaselected,
           }}
         />
-        <select className="select" name="years">
+        <select onChange={(e)=>{
+          setYears(e.target.value)
+        }} className="select" name="years">
           <option value="" disabled selected hidden>
             {t("years")}
           </option>
@@ -80,7 +131,9 @@ const Explore = () => {
             <option key={i} value={i}>{`${i} ${t("expyear")}`}</option>
           ))}
         </select>
-        <select className="select" name="rating">
+        <select onChange={(e)=>{
+          setRating(e.target.value)
+        }} className="select" name="rating">
           <option value="" disabled selected hidden>
             {t("rating")}
           </option>
@@ -88,14 +141,18 @@ const Explore = () => {
             <option key={i} value={i}>{`${i} ${t("stars")}`}</option>
           ))}
         </select>
+        <button onClick={(e)=>{
+          handleSearch(e);
+          console.log(filtreddata)
+        }} className="bg-white text-primary text-base font-semibold w-full text-center rounded-lg transition duration-[0.5s] ease-in-out hover:bg-green-700 hover:text-white">{t("search")}</button>
       </div>
       <div className="w-full flex justify-center items-center">
-        {data?.length > 0 ? (
+        {issearch == true && filtreddata?.length > 0 ? (
           <div className="w-[90%] mx-auto">
             <h1 className="text-white text-xl font-bold my-3">
               {t("searchresult")}
             </h1>
-            {data?.map((lawyer) => (
+            {filtreddata?.map((lawyer) => (
               <Link className="no-underline" to={`/lawyer/${lawyer.id}`}>
                 <LawyerCard
                   key={lawyer.id}
