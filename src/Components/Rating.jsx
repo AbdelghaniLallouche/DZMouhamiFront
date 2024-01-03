@@ -1,8 +1,13 @@
 import { useState } from "react";
+import RatingInput from "./RatingInput";
 import RatingComponent from "./RatingComponent";
 import { t } from "i18next";
+import { AddIcon } from "../Svgs/Svgs";
+import RatingModal from "./RatingModal";
 
 const Rating = () => {
+  const [userRating, setUserRating] = useState(0);
+  const [ratingModal , setRatingModal] = useState(false)
   const [ratings, setRatings] = useState([
     {
       id: 1,
@@ -33,13 +38,13 @@ const Rating = () => {
     <div>
       <div className="flex flex-wrap items-center gap-2 bg-white rounded-xl p-3 mt-5">
         <div className="hh">{t("addrating")}</div>
-        <RatingComponent />
+        <RatingInput props={{userRating, setUserRating}} />
         <div className="flex-1 flex justify-end">
-          <button className="flex flex-wrap gap-1">
+          <button onClick={()=>{setRatingModal(true)}} className="flex flex-wrap gap-2 items-center">
             <h1 className="text-primary text-base font-semibold">
               {t("addreview")}
             </h1>
-            {/* icon add */}
+            <AddIcon />
           </button>
         </div>
       </div>
@@ -58,6 +63,7 @@ const Rating = () => {
           <div>{t("noreview")}</div>
         )}
       </div>
+      {ratingModal && <RatingModal close = {setRatingModal}  rating={userRating}/>}
     </div>
   );
 };
