@@ -87,11 +87,11 @@ const Explore = () => {
           }}
           value={name}
           name="search"
-          className="rounded-xl shadow-lg w-full py-2 px-10 border-none"
+          className="rounded-xl shadow-lg w-full py-2 ps-10 focus:outline-none border-none"
           required
           placeholder={t("find")}
         />
-        <SearchIcon txt={i18n.language} />
+        <SearchIcon  />
       </div>
       <div className="mx-[5%] grid grid-cols-2 justify-items-center gap-1 md:grid-cols-6">
         <select onChange={(e)=>{

@@ -20,6 +20,7 @@ import ReservationsList from "./Components/Reservationslist";
 import UserContextProvider from "./Context/UserContextProvider";
 import Reservations from "./Layouts/Resarvations";
 import DatesTable from "./Components/DatesTable";
+import EditProfile from "./Layouts/EditProfile";
 
 function App() {
   const { i18n } = useTranslation();
@@ -45,7 +46,7 @@ function App() {
           </Route>
           <Route
             path="editprofile"
-            element={<ProfileSetup /> /* just placeholder element */}
+            element={<EditProfile />}
           />
           <Route path="lawyer/:id" element={<LawyerProfile />}>
             <Route index element={<Generale />} />

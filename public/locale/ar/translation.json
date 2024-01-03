@@ -91,6 +91,19 @@
     "additionalinfo" : "معلومات إضافية :",
     "annuler" : "الغاء",
     "reservations" : "المواعيد",
-    "rendez-vous" : "جدول المواعيد"        
+    "rendez-vous" : "جدول المواعيد",
+    "accept" : "قبول",
+    "decline" : "رفض",
+    "user" : "المحجز",
+    "actions" : "الاجراءات",
+    "datte" : "التاريخ",
+    "too" : "الى",
+    "fromm" : "من",
+    "descr" : "الوصف",
+    "acceptedYourReservation" : "قد قبل موعدك يوم : {{date}} من الساعة : {{from}} الى الساعة : {{to}} للمزيد من المعلومات اتصل بالمحامي على الرقم : {{phone}}",
+    "notifications" : "الاشعارات",
+    "editprofile" : "تعديل الملف الشخصي"
+
+         
     
 }

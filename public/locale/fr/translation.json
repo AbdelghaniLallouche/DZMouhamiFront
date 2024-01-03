@@ -87,11 +87,24 @@
     "reserver" : "réserver !",
     "prendre" : "prendre un rendez-vous :",
     "date" : "date :",
+    "datte" : "date",
+    "too" : "jusqu'a",
+    "fromm" : "de",
+    "descr" : "description",
     "time" : "heure :",
     "additionalinfo" : "infos supplémentaires :",
     "annuler" : "annuler",
     "reservations" : "réservations",
-    "rendez-vous" : "rendez-vous"
+    "rendez-vous" : "rendez-vous",
+    "accept" : "accepter",
+    "decline" : "refuser",
+    "user" : "réserveur",
+    "actions" : "actions",
+    "acceptedYourReservation" : "a accepté votre réservation au {{date}} de {{from}} à {{to}} pour plus d'informations veuillez contacter {{phone}}",
+    "notifications" : "notifications",
+    "editprofile" : "modifier le profile"
+    
+
     
 
 

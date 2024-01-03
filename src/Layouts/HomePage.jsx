@@ -11,6 +11,7 @@ import {
   CloseIcon,
   ReservationIcon
 } from "../Svgs/Svgs";
+import NotificationsModal from "../Components/NotificationsModal";
 
 const HomePage = () => {
   const { user } = useContext(userContext);
@@ -51,6 +52,8 @@ const HomePage = () => {
     setIsNavHidden(!isNavHidden);
   };
 
+  const [notif , setNotif] = useState(false)
+
   useEffect(() => {
     const handleResize = () => {
       setIsNavHidden(window.innerWidth >= 1024);
@@ -65,7 +68,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="w-screen h-full bg-primary">
+    <div className="w-screen h-screen flex flex-col bg-primary">
       <header className="flex relative justify-between bg-[#1D1D21] items-center px-8 py-4">
         <Link>
           <h1 className="text-white text-center font-bold text-[16px] sm:text-[22px]">
@@ -101,7 +104,7 @@ const HomePage = () => {
                  <h2 className="text-white font-semibold lg:text-[17px] px-2 capitalize">
                     {t("reservations")}
                   </h2>
-                  <p className="bg-red-600 pl-[3px] pr-1  mt-[5.5px] pt-[1px] pb-[2px] rounded-[50%] text-white text-center text-xs font-semibold">
+                  <p className="bg-red-600 ps-[4.5px] pe-[5px]  mt-[5.5px] pt-[1.5px] pb-[3px] rounded-[50%] text-white text-center text-xs font-semibold">
                     {reservations ? reservations.length : 0}
                   </p>
                 </Link>
@@ -110,7 +113,7 @@ const HomePage = () => {
             <div className="flex flex-col lg:flex-row px-[6px] gap-5 lg:gap-2 lg:px-0">
               <select
                 name="lang"
-                className="py-[6px] px-2 lg:w-[100px] rounded-lg"
+                className="py-[6px] ps-3 lg:w-[100px] rounded-lg focus:outline-none"
                 id="lang"
                 placeholder="language :"
                 value={i18n.language}
@@ -132,9 +135,16 @@ const HomePage = () => {
         )}
         <div className="flex flex-1 justify-end gap-3 lg:flex-none">
         {user.role == 2 && 
-        <button className="h-6 w-6 lg:h-8 lg:w-8 relative flex justify-end">
+        <button onClick={()=>{
+          if((notifications && notifications?.length > 0)){
+            setNotif(true);
+          }else{
+            setNotif(false)
+          }
+          
+        }} className="h-6 w-6 lg:h-8 lg:w-8 relative flex justify-end">
           <ReservationIcon />
-          {notifications && <p className="absolute bottom-[-14px] lg:bottom-[-10px] right-[-2px] bg-red-600 py-[3px] lg:px-2 px-[6px] rounded-[50%] text-white text-center text-xs font-semibold">{notifications.length }</p>}
+          {(notifications && notifications?.length > 0) && <p className="absolute bottom-[-12px] lg:bottom-[-6px] right-[-2px] bg-red-600 pt-[2px] pb-[3px] lg:px-2 pr-[7px] pl-[6px] rounded-[50%] text-white text-center text-xs font-semibold">{notifications.length }</p>}
         </button>
         }
         <button
@@ -146,8 +156,11 @@ const HomePage = () => {
         </div>
         
       </header>
+      <div className="flex-1">
       <Outlet />
+      </div>
       <Footer />
+      { notif && <NotificationsModal close = {setNotif} /> }
     </div>
   );
 };
